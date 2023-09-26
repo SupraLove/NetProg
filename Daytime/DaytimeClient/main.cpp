@@ -5,18 +5,19 @@
 using namespace std;
 //Алгоритм работы сетевого клиента: Подготовить адреснуые структуры(свою и удаленного сервера) формата IPv4, создать сокет для IPv4, привязать сокет к своему адресу,
 //установить соединение с сервером, выполнить информационный обмен, закрыть сокет
+//формируем структуру
 int main() {
 struct sockaddr_in {
- short sin_family;
- unsigned short sin_port;
- struct in_addr sin_addr;
+ short sin_family;//для указания протокола ipv4/6
+ unsigned short sin_port;//порт
+ struct in_addr sin_addr;//адрес ip
  char sin_zero[8];
 };
 struct in_addr {
  unsigned long s_addr;
 };
 //Создание сокета IPv4
-int s = socket(AF_INET, SOCK_DGRAM, 0); // UDP
+int s = socket(AF_INET, SOCK_DGRAM, 0); // and ipv4 UDP(быстрая передача данных) and 
 if(s == -1) {
     cout << "Socket error\n";
     return 1;
